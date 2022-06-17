@@ -11,7 +11,7 @@ export const counterSlice = createSlice({
       state.thermostat = state.thermostat + 1;
     },
     decrement: (state) => {
-      state.thermostat = state.value - 1;
+      state.thermostat = state.thermostat - 1;
     },
     save: (state) => {
       state.thermostat = state.thermostat;

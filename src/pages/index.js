@@ -12,13 +12,15 @@ import {
   increment,
   save,
 } from "/Users/gagan/Code/week5/assesment-week5/SmartHome/src/store/temperatureControl/slice";
-import { useState } from "react";
+import { radioStateSelector } from "../store/radioControl/selectors";
+import { radioOn, radioOff } from "../store/radioControl/slice";
 
 export default function HomePage() {
   const dispatch = useDispatch();
 
   const lamps = useSelector(lampStateSelector);
   const counter = useSelector(thermostatSelector);
+  const radiosel = useSelector(radioStateSelector);
 
   //   useEffect(() => {
   //     dispatch(lampStateSelector);
@@ -51,12 +53,20 @@ export default function HomePage() {
         style={{ border: "2px solid black", textAlign: "center" }}
       >
         <h2>Radio control</h2>
-        <button onClick={() => dispatch()}>Turn Radio On</button>
+        <ul>
+          {" "}
+          <h4>Currently playing: {radiosel.genre}</h4>
+          <h4>Radio State: {radiosel.power.toString()}</h4>
+          <button onClick={() => dispatch(radioOn())}>Turn Radio On</button>
+          <button onClick={() => dispatch(radioOff())}>Turn Radio Off</button>
+          <br />
+          <br />
+        </ul>
         <br />
         <p>
           Currently Playing: <input type="text" />
         </p>
-        <button onClick={() => dispatch()}>Change Station</button>
+        <button onClick="submit">Change Station</button>
         <br />
         <br />
       </div>
