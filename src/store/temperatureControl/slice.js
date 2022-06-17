@@ -8,14 +8,17 @@ export const counterSlice = createSlice({
   initialState,
   reducers: {
     increment: (state) => {
-      state.value = state.value + 1;
+      state.thermostat = state.thermostat + 1;
     },
     decrement: (state) => {
-      state.value = state.value - 1;
+      state.thermostat = state.value - 1;
+    },
+    save: (state) => {
+      state.thermostat = state.thermostat;
     },
   },
 });
 // BOILERPLATE
-export const { increment, decrement } = counterSlice.actions;
+export const { increment, decrement, save } = counterSlice.actions;
 
 export default counterSlice.reducer;
