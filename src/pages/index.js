@@ -14,6 +14,8 @@ import {
 } from "/Users/gagan/Code/week5/assesment-week5/SmartHome/src/store/temperatureControl/slice";
 import { radioStateSelector } from "../store/radioControl/selectors";
 import { radioOn, radioOff } from "../store/radioControl/slice";
+import { addSong } from "../store/radioControl/slice";
+import { useState } from "react";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -25,6 +27,19 @@ export default function HomePage() {
   //   useEffect(() => {
   //     dispatch(lampStateSelector);
   //   }, [dispatch]);
+  const [song, setSong] = useState("");
+  const submit = (event) => {
+    // to make sure that the form does not redirect (which is normal browser behavior)
+    event.preventDefault();
+
+    console.log("new song:", song);
+
+    // - dispatch an action that sends the new pizza to the store
+    dispatch(addSong(song));
+
+    // - clear the input fields
+    setSong("");
+  };
 
   return (
     <div
@@ -62,12 +77,23 @@ export default function HomePage() {
           <br />
           <br />
         </ul>
-        <br />
-        <p>
-          Currently Playing: <input type="text" />
-        </p>
-        <button onClick="submit">Change Station</button>
-        <br />
+        <form onSubmit={submit}>
+          <h2>Play a new Genre! Enter below</h2>
+          <p>
+            <label>
+              Name:{" "}
+              <input
+                type="text"
+                value={song}
+                onChange={(e) => setSong(e.target.value)}
+              />
+            </label>
+          </p>
+
+          <p>
+            <button type="submit">Play this Genre!</button>
+          </p>
+        </form>
         <br />
       </div>
       <div

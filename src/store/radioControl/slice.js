@@ -16,8 +16,11 @@ const radioSlice = createSlice({
       state.loading = false;
       state.allRadioStations.power = false;
     },
+    addSong: (state, action) => {
+      state.allRadioStations.genre = action.payload;
+    },
   },
 });
 // remember to export the action creators for the new reducer cases
-export const { radioOn, radioOff } = radioSlice.actions;
+export const { radioOn, radioOff, addSong } = radioSlice.actions;
 export default radioSlice.reducer;
